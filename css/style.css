@@ -56,4 +56,9 @@ body{
     width: 18%;
     height: 100px;
     cursor: pointer;
+    filter: grayscale(1);
+}
+
+#thumbnails .thumb-card.active{
+    filter: grayscale(0);
 }

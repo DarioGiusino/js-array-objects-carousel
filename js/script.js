@@ -40,10 +40,27 @@ const createCards = (array) => {
     return cardsArray;
 }
 
+//dato un array di oggetti (con titolo, testo e immagine), crea un set di thumbs
+const createThumbs = (array) => {
+    let thumbsArray = '';
+
+    for (let item of array){
+        thumbsArray += `
+        <div class="thumb-card">
+            <img class="rounded-3 img-fluid fit-image" src="${item.image}" alt="${item.title}">
+        </div> 
+        `
+    }
+
+    return thumbsArray;
+}
+
 //funzione per cambiare immagine
 const changePic = (target) => {
-    //aggiungo classe d-none
+    //aggiungo classe d-none/rimuovo la classe active dalla thumb
     cards[currentIndex].classList.add('d-none');
+    thumbs[currentIndex].classList.remove('active');
+
 
     if(target === 'next'){
         //aumento l'index
@@ -59,27 +76,34 @@ const changePic = (target) => {
         //se l'index supera la lunghezza minima delle cards lo riporto all'ultima card
         if(currentIndex < 0) currentIndex = cards.length - 1;
     }
+    else {
+        currentIndex = target;
+    }
 
-    //rimuovo la classe d-none per mostrare la nuova card
+    //rimuovo la classe d-none per mostrare la nuova card/aggiungo classe active per mostrare la thumb
     cards[currentIndex].classList.remove('d-none');
+    thumbs[currentIndex].classList.add('active');
 }
 
 //# fase preliminare
 //recupero elementi dal DOM
 const gallery = document.getElementById('gallery');
+const thumbsGallery = document.getElementById('thumbnails');
 const next = document.getElementById('next');
 const prev = document.getElementById('prev');
 
-//butto in pagina il set di cards con la funzione creata
-gallery.innerHTML += createCards(data);
+//butto in pagina il set di cards e di thumbs con la funzione creata
+gallery.innerHTML = createCards(data);
+thumbsGallery.innerHTML = createThumbs(data);
 
-//metto in variabile l'array di cards create
-const cards = document.querySelectorAll('#gallery .card')
-// // console.log(cards);
+//metto in variabile l'array di cards e thumbs create
+const cards = document.querySelectorAll('#gallery .card');
+const thumbs = document.querySelectorAll('#thumbnails .thumb-card');
 
-//imposto l'index predefinito dell'array e in base a questo ne renderizzo una
+//imposto l'index predefinito dell'array e in base a questo renderizzo una card e coloro un thumb
 let currentIndex = 0;
 cards[currentIndex].classList.remove('d-none');
+thumbs[currentIndex].classList.add('active');
 
 //# eventi dinamici
 
@@ -92,3 +116,11 @@ next.addEventListener('click', () => {
 prev.addEventListener('click', () => {
     changePic('prev');
 });
+
+// ciclando all'interno dei thumbs, ad ogni click di singolo thumb
+thumbs.forEach((thumb, i) => {
+    thumb.addEventListener('click', () => {
+        changePic(i);
+    });
+
+})
