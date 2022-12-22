@@ -43,6 +43,8 @@ const createCards = (array) => {
 //# fase preliminare
 //recupero elementi dal DOM
 const gallery = document.getElementById('gallery');
+const next = document.getElementById('next');
+const prev = document.getElementById('prev');
 
 //butto in pagina il set di cards con la funzione creata
 gallery.innerHTML = createCards(data);
@@ -54,3 +56,7 @@ const cards = document.querySelectorAll('#gallery .card')
 //imposto l'index predefinito dell'array e in base a questo ne renderizzo una
 let currentIndex = 0;
 cards[currentIndex].classList.remove('d-none')
+
+//# eventi dinamici
+
+// al click del bottone next
