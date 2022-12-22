@@ -40,6 +40,30 @@ const createCards = (array) => {
     return cardsArray;
 }
 
+//funzione per cambiare immagine
+const changePic = (target) => {
+    //aggiungo classe d-none
+    cards[currentIndex].classList.add('d-none');
+
+    if(target === 'next'){
+        //aumento l'index
+        currentIndex++;
+
+        //se l'index supera la lunghezza massima delle cards lo riporto a 0
+        if(currentIndex === cards.length) currentIndex = 0;
+    } 
+    else if (target === 'prev'){
+        //riduco l'index
+        currentIndex--;
+
+        //se l'index supera la lunghezza minima delle cards lo riporto all'ultima card
+        if(currentIndex < 0) currentIndex = cards.length - 1;
+    }
+
+    //rimuovo la classe d-none per mostrare la nuova card
+    cards[currentIndex].classList.remove('d-none');
+}
+
 //# fase preliminare
 //recupero elementi dal DOM
 const gallery = document.getElementById('gallery');
@@ -61,30 +85,10 @@ cards[currentIndex].classList.remove('d-none');
 
 // al click del bottone next
 next.addEventListener('click', () => {
-    //aggiungo classe d-none
-    cards[currentIndex].classList.add('d-none');
-
-    //aumento l'index
-    currentIndex++;
-
-    //se l'index supera la lunghezza massima delle cards lo riporto a 0
-    if(currentIndex === cards.length) currentIndex = 0;
-
-    //rimuovo la classe d-none per mostrare la nuova card
-    cards[currentIndex].classList.remove('d-none');
+    changePic('next');
 });
 
 // al click del bottone prev
 prev.addEventListener('click', () => {
-    //aggiungo classe d-none
-    cards[currentIndex].classList.add('d-none');
-
-    //riduco l'index
-    currentIndex--;
-
-    //se l'index supera la lunghezza minima delle cards lo riporto all'ultima card
-    if(currentIndex < 0) currentIndex = cards.length - 1;
-
-    //rimuovo la classe d-none per mostrare la nuova card
-    cards[currentIndex].classList.remove('d-none');
+    changePic('prev');
 });
