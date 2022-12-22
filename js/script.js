@@ -65,10 +65,25 @@ next.addEventListener('click', () => {
     cards[currentIndex].classList.add('d-none');
 
     //aumento l'index
-    currentIndex++
+    currentIndex++;
 
     //se l'index supera la lunghezza massima delle cards lo riporto a 0
     if(currentIndex === cards.length) currentIndex = 0;
+
+    //rimuovo la classe d-none per mostrare la nuova card
+    cards[currentIndex].classList.remove('d-none');
+});
+
+// al click del bottone prev
+prev.addEventListener('click', () => {
+    //aggiungo classe d-none
+    cards[currentIndex].classList.add('d-none');
+
+    //riduco l'index
+    currentIndex--;
+
+    //se l'index supera la lunghezza minima delle cards lo riporto all'ultima card
+    if(currentIndex < 0) currentIndex = cards.length - 1;
 
     //rimuovo la classe d-none per mostrare la nuova card
     cards[currentIndex].classList.remove('d-none');
