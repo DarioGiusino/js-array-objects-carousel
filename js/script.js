@@ -77,6 +77,7 @@ const changePic = (target) => {
         if(currentIndex < 0) currentIndex = cards.length - 1;
     }
     else {
+        //l'index sarà proprio quello passato
         currentIndex = target;
     }
 
@@ -122,5 +123,4 @@ thumbs.forEach((thumb, i) => {
     thumb.addEventListener('click', () => {
         changePic(i);
     });
-
 })
