@@ -19,3 +19,38 @@ Aggiungere funzionalità di autoplay: dopo un certo periodo di tempo (3 secondi)
 ?BONUS 3:
 Aggiungere bottoni di start/stop  del meccanismo di autoplay.
 */
+
+//# funzioni
+//dato un array di oggetti (con titolo, testo e immagine), crea un set di cards
+const createCards = (array) => {
+    let cardsArray = '';
+
+    for (let item of array){
+        cardsArray += `
+        <div class="card text-bg-dark d-none">
+            <img src="${item.image}" class="card-img" alt="${item.title}">
+            <div class="card-img-overlay">
+                <h1 class="card-title">${item.title}</h1>
+                <p class="card-text fs-5">${item.text}</p>
+            </div>
+        </div> 
+        `
+    }
+
+    return cardsArray;
+}
+
+//# fase preliminare
+//recupero elementi dal DOM
+const gallery = document.getElementById('gallery');
+
+//butto in pagina il set di cards con la funzione creata
+gallery.innerHTML = createCards(data);
+
+//metto in variabile l'array di cards create
+const cards = document.querySelectorAll('#gallery .card')
+// // console.log(cards);
+
+//imposto l'index predefinito dell'array e in base a questo ne renderizzo una
+let currentIndex = 0;
+cards[currentIndex].classList.remove('d-none')

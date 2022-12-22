@@ -39,4 +39,7 @@ body{
 .card-img-overlay{
     top: auto;
     left: auto;
+    background-color: rgba(0,0,0,0.4);
+    border-radius: 25px;
+    width: 100%;
 }
