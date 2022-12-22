@@ -55,8 +55,21 @@ const cards = document.querySelectorAll('#gallery .card')
 
 //imposto l'index predefinito dell'array e in base a questo ne renderizzo una
 let currentIndex = 0;
-cards[currentIndex].classList.remove('d-none')
+cards[currentIndex].classList.remove('d-none');
 
 //# eventi dinamici
 
 // al click del bottone next
+next.addEventListener('click', () => {
+    //aggiungo classe d-none
+    cards[currentIndex].classList.add('d-none');
+
+    //aumento l'index
+    currentIndex++
+
+    //se l'index supera la lunghezza massima delle cards lo riporto a 0
+    if(currentIndex === cards.length) currentIndex = 0;
+
+    //rimuovo la classe d-none per mostrare la nuova card
+    cards[currentIndex].classList.remove('d-none');
+});
