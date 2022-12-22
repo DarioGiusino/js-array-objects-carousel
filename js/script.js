@@ -124,3 +124,8 @@ thumbs.forEach((thumb, i) => {
         changePic(i);
     });
 })
+
+//? Ogni 3 secondi la card ed il thumb cambiano automaticamente
+setInterval(() => {
+    changePic('next');
+}, 3000);
