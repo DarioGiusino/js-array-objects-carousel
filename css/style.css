@@ -5,6 +5,27 @@ body{
     font-family: sans-serif;
 }
 
+/* # carousel */
+/* arrows */
+#carousel .arrow-button{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    font-size: 2.5rem;
+    opacity: 0.2;
+    cursor: pointer;
+}
+
+#carousel .arrow-button.left{
+    left: 1.5rem;
+}
+
+#carousel .arrow-button.right{
+    right: 1.5rem;
+}
+
+/* card */
 .card{
     height: 500px;
 }
@@ -19,4 +40,3 @@ body{
     top: auto;
     left: auto;
 }
-
