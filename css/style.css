@@ -5,6 +5,13 @@ body{
     font-family: sans-serif;
 }
 
+/* # utilities */
+.fit-image{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
 /* # carousel */
 /* arrows */
 #carousel .arrow-button{
@@ -31,21 +38,22 @@ body{
     right: 1.5rem;
 }
 
-/* card */
-.card{
+/* gallery card */
+#gallery .card{
     height: 500px;
 }
 
-.card img{
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-}
-
-.card-img-overlay{
+#gallery .card-img-overlay{
     top: auto;
     left: auto;
     background-color: rgba(0,0,0,0.4);
     border-radius: 25px;
     width: 100%;
+}
+
+/* thumbnails card */
+#thumbnails .thumb-card{
+    width: 18%;
+    height: 100px;
+    cursor: pointer;
 }

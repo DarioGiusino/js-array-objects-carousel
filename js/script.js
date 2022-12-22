@@ -28,7 +28,7 @@ const createCards = (array) => {
     for (let item of array){
         cardsArray += `
         <div class="card text-bg-dark d-none">
-            <img src="${item.image}" class="card-img" alt="${item.title}">
+            <img src="${item.image}" class="card-img fit-image" alt="${item.title}">
             <div class="card-img-overlay">
                 <h1 class="card-title">${item.title}</h1>
                 <p class="card-text fs-5">${item.text}</p>
@@ -71,7 +71,7 @@ const next = document.getElementById('next');
 const prev = document.getElementById('prev');
 
 //butto in pagina il set di cards con la funzione creata
-gallery.innerHTML = createCards(data);
+gallery.innerHTML += createCards(data);
 
 //metto in variabile l'array di cards create
 const cards = document.querySelectorAll('#gallery .card')
