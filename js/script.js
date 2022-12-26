@@ -109,6 +109,19 @@ const startAndStop = () => {
     }
 }
 
+//funzione di stop autoplay se cliccati i bottoni di next, prev o un thumb
+const stopMotion = () => {
+    //giro il flag
+    isStarted = !isStarted;
+
+    //si ferma l'autoplay
+    clearInterval(motion);
+
+    //il bottone dell'autoplay diventa play
+    pause.classList.add('d-none');
+    play.classList.remove('d-none');
+}
+
 //# fase preliminare
 //recupero elementi dal DOM
 const gallery = document.getElementById('gallery');
@@ -144,18 +157,30 @@ let isStarted = true;
 //# eventi dinamici
 // al click del bottone next
 next.addEventListener('click', () => {
+    //cambio immagine verso destra
     changePic('next');
+
+    //fermo l'autoplay
+    stopMotion();
 });
 
 // al click del bottone prev
 prev.addEventListener('click', () => {
+    //cambio immagine verso sinistra
     changePic('prev');
+
+    //fermo l'autoplay
+    stopMotion();
 });
 
 // ciclando all'interno dei thumbs, ad ogni click di singolo thumb
 thumbs.forEach((thumb, i) => {
+    //viene mostrato il thumb cliccato
     thumb.addEventListener('click', () => {
         changePic(i);
+
+        //fermo l'autoplay
+        stopMotion();
     });
 })
 
