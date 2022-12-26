@@ -64,8 +64,15 @@ body{
     height: 100px;
     cursor: pointer;
     filter: grayscale(1);
+    border-radius: 10px;
+}
+
+#thumbnails .thumb-card:hover{
+    filter: grayscale(0.5);
+    outline: 2px solid #1d82d3;
 }
 
 #thumbnails .thumb-card.active{
     filter: grayscale(0);
+    outline: 2px solid #1d82d3;
 }
