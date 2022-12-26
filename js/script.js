@@ -86,12 +86,37 @@ const changePic = (target) => {
     thumbs[currentIndex].classList.add('active');
 }
 
+//funzione di autoplay
+const startAndStop = () => {
+    //giro il flag
+    isStarted = !isStarted;
+
+    //se stoppato si ferma l'autoplay e si cambia il button in play
+    if(!isStarted){
+        pause.classList.add('d-none');
+        play.classList.remove('d-none');
+    
+        clearInterval(motion);
+    } 
+    //altrimenti riparte l'autoplay e si cambia il button in stop
+    else {
+        play.classList.add('d-none');
+        pause.classList.remove('d-none');
+    
+        motion = setInterval(() => {
+            changePic('next');
+        }, 3000);
+    }
+}
+
 //# fase preliminare
 //recupero elementi dal DOM
 const gallery = document.getElementById('gallery');
 const thumbsGallery = document.getElementById('thumbnails');
 const next = document.getElementById('next');
 const prev = document.getElementById('prev');
+const play = document.getElementById('play');
+const pause = document.getElementById('pause');
 
 //butto in pagina il set di cards e di thumbs con la funzione creata
 gallery.innerHTML = createCards(data);
@@ -101,13 +126,22 @@ thumbsGallery.innerHTML = createThumbs(data);
 const cards = document.querySelectorAll('#gallery .card');
 const thumbs = document.querySelectorAll('#thumbnails .thumb-card');
 
+
+//# avvio pagina
 //imposto l'index predefinito dell'array e in base a questo renderizzo una card e coloro un thumb
 let currentIndex = 0;
 cards[currentIndex].classList.remove('d-none');
 thumbs[currentIndex].classList.add('active');
 
-//# eventi dinamici
+//Ogni 3 secondi la card ed il thumb cambiano automaticamente
+let motion = setInterval(() => {
+    changePic('next');
+}, 3000);
 
+//variabile d'appoggio per l'autoplay
+let isStarted = true;
+
+//# eventi dinamici
 // al click del bottone next
 next.addEventListener('click', () => {
     changePic('next');
@@ -125,7 +159,12 @@ thumbs.forEach((thumb, i) => {
     });
 })
 
-//? Ogni 3 secondi la card ed il thumb cambiano automaticamente
-setInterval(() => {
-    changePic('next');
-}, 3000);
+// al click di pause si ferma l'autoplay
+pause.addEventListener('click', () =>{
+    startAndStop();
+});
+
+//al click di play riparte l'autoplay
+play.addEventListener('click', () =>{
+    startAndStop();
+});
